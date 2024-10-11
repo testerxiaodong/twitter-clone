@@ -2,6 +2,7 @@ import express from 'express'
 import authRoutes from './routes/auth.routes.js'
 import dotenv from 'dotenv'
 import connectMongoDB from './db/connectMongoDB.js'
+import cookieParser from 'cookie-parser'
 
 // 加载环境变量
 dotenv.config()
@@ -9,6 +10,13 @@ dotenv.config()
 // 创建 Express 实例
 const app = express()
 const PORT = process.env.PORT || 5000
+
+// 开启json解析
+app.use(express.json())
+// 开启url编码解析，表单数据解析
+app.use(express.urlencoded({ extended: true }))
+// 开启cookie解析
+app.use(cookieParser())
 
 // 用户登陆认证相关路由
 app.use('/api/auth', authRoutes)
