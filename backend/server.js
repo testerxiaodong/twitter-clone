@@ -1,6 +1,7 @@
 import express from 'express'
 import authRoutes from './routes/auth.routes.js'
 import userRoutes from './routes/user.routes.js'
+import postRoutes from './routes/post.routes.js'
 import dotenv from 'dotenv'
 import connectMongoDB from './db/connectMongoDB.js'
 import cookieParser from 'cookie-parser'
@@ -29,6 +30,8 @@ app.use(cookieParser())
 app.use('/api/auth', authRoutes)
 // 用户信息相关路由
 app.use('/api/users', userRoutes)
+// 帖子相关路由
+app.use('/api/posts', postRoutes)
 
 app.listen(PORT, () => {
   console.log(`Example app listening on http://localhost:${PORT}!`)
